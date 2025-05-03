@@ -1,0 +1,68 @@
+# General
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.lock.json
+*.vspscc
+*.vssscc
+.vs/
+.vscode/
+TestResults/
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+bld/
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+publish/
+*.exe
+*.dll
+*.pdb
+*.cache
+*.config
+*.xml
+
+# NuGet
+[Nn]uget/
+*.nupkg
+packages/
+
+# Rider
+.idea/
+*.sln.iml
+
+# Azure
+*.pubxml
+*.publishsettings
+
+# Logs
+*.log
+*.log.*
+
+# Local development
+appsettings.Development.json
+
+# User-specific files
+*.userprefs
+
+# MSTest
+*.Test.xml
+
+# SQL Server
+*.mdf
+*.ldf
+
+# Resharper
+_ReSharper.*
+*.ReSharper.*
+
+# Backup files
+*.bak
+*.tmp
+
+# Node.js
+node_modules/

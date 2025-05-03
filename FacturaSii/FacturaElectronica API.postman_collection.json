@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "688370a7-46a1-4569-b7cb-81fdba86c9f1",
+		"name": "FacturaElectronica API",
+		"description": "Colección para probar los endpoints de facturación con autenticación",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "679704",
+		"_collection_link": "https://grey-equinox-270808.postman.co/workspace/Team-Workspace~7832f5b4-e48e-4cbc-8d09-23115fe89ecc/collection/679704-688370a7-46a1-4569-b7cb-81fdba86c9f1?action=share&source=collection_link&creator=679704"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = pm.response.json();",
+							"pm.environment.set(\"authToken\", json.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/auth/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Emitir Factura",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"folio\": 1,\n  \"rutEmisor\": \"1-7\",\n  \"rutReceptor\": \"1-8\",\n  \"items\": [\n    {\n      \"descripcion\": \"primer producto\",\n      \"cantidad\": 10,\n      \"precioUnitario\": 20\n    }\n  ]\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/facturas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"facturas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Factura por Folio",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authToken}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/facturas/estado/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"facturas",
+						"estado",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "username",
+			"value": "admin"
+		},
+		{
+			"key": "password",
+			"value": "password"
+		},
+		{
+			"key": "authToken",
+			"value": ""
+		}
+	]
+}

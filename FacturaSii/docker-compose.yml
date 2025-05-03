@@ -1,0 +1,40 @@
+version: '3.9'
+
+services:
+  factura-db:
+    image: postgres:15
+    container_name: factura-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: factura_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - factura_data:/var/lib/postgresql/data
+    networks:
+      - factura-net
+
+  factura-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: factura-api
+    depends_on:
+      - factura-db
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: "https://+:443;http://+:80"
+      ConnectionStrings__DefaultConnection: "Host=factura-db;Port=5432;Database=factura_db;Username=postgres;Password=postgres"
+      ASPNETCORE_Kestrel__Certificates__Default__Path: "/https/certificado-prueba.pfx"
+      ASPNETCORE_Kestrel__Certificates__Default__Password: "123456"
+    ports:
+      - "8080:80"
+    networks:
+      - factura-net
+
+volumes:
+  factura_data:
+
+networks:
+  factura-net:
