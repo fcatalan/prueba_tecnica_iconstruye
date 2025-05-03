@@ -1,5 +1,10 @@
 # prueba_tecnica_iconstruye
 
+Construir y subir imágenes, se debe estar en la carpeta del docker-compose: docker-compose up --build -d
+
+Bajar docker-compose: docker-compose down
+
+
 ## Diseño de soluciones: presentar diagramas de arquitectura clara y moderna.
 
 Arquitectura propuesta:
